@@ -1,0 +1,12 @@
+services:
+  backend:
+    image: ghcr.io/uggletoggle/useful-commands-backend:latest
+    restart: always
+    ports:
+      - "5000:8080" # Mapeo puerto host vs puerto interno
+
+  frontend:
+    image: ghcr.io/uggletoggle/useful-commands-frontend:latest
+    restart: always
+    ports:
+      - "80:80"
