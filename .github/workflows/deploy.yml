@@ -41,7 +41,18 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            mkdir -p apps
             cd apps
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
-            docker compose pull
+            echo "Docker login command executed. Checking status..."
+            
+            if [ -d "useful-commands" ]; then
+              cd useful-commands
+              git pull
+              docker compose down
+            else
+              git clone https://github.com/uggletoggle/useful-commands
+              cd useful-commands
+            fi
+            
             docker compose up -d
