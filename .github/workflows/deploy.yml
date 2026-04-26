@@ -54,5 +54,6 @@ jobs:
               git clone https://github.com/uggletoggle/useful-commands
               cd useful-commands
             fi
-            
+            docker compose down
+            docker compose pull
             docker compose up -d
